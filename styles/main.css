@@ -1,9 +1,9 @@
 html,
 body {
   height: 100%;
+  margin: 0;
 }
 body {
-  height: 100vh;
   background: #37444e;
   background: radial-gradient(at center top, #37444e, #10191e);
 }
