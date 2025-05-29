@@ -9,11 +9,11 @@ for(const suit of suits){
 };
 function randomCard(){
     let cardsPlayer = [];
-    for(let i=0; i<2; i++){
-        const randomIndex = Math.floor(Math.random() * cards.length)
-        cardsPlayer.push(randomIndex)
-        cardsPlayer.splice(randomIndex, 1);
+    for(let i = 0; i < 2; i++){
+        const randomIndex = Math.floor(Math.random() * cards.length);
+        cardsPlayer.push(cards[randomIndex]);
+        cards.splice(randomIndex, 1);
     }
-    return cardsPlayer
+    return cardsPlayer;
 }
 console.log(randomCard())
