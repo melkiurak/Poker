@@ -52,7 +52,7 @@ tableCards.forEach((card) => {
     cardValue.textContent = card.value;
     cardValue.style.color = colorSuit[card.suit]
 
-    
+
     cardContainer.appendChild(cardElement);
     cardElement.appendChild(suitImg);
     cardElement.appendChild(cardValue);
