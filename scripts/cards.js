@@ -1,6 +1,7 @@
 const suits = ['Diamonds', 'Clubs', 'Spades', 'Hearts']
 const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A']
 const cards = [];
+const players = 2;
 
 for(const suit of suits){
     for(const value of values){
@@ -16,4 +17,9 @@ function randomCard(){
     }
     return cardsPlayer;
 }
-console.log(randomCard())
+const playersCards = [];
+
+for(let i = 0; i < players; i++){
+    playersCards.push(randomCard())
+}
+console.log(playersCards)
