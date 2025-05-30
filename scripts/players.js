@@ -13,7 +13,6 @@ let countPlayer = 0
 let maxPlayer = 9
 
 
-
 function randomAvatar()  {
     const avatarIndex = Math.floor(Math.random() * avatarList.length)
     return avatarList[avatarIndex]
@@ -28,7 +27,7 @@ function createPlayer() {
     const player = document.createElement('div');
     const startChips = 5000
     player.className = 'player'
-    player.innerHTML = ` <div class="player__timer"></div>
+    player.innerHTML = `<div class="player__timer"></div>
         <div class="player__info">
             <div class="player__info-img">
                 <img src="${avatar}" alt="">
