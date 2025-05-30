@@ -26,12 +26,16 @@ function createPlayer() {
     const avatar = randomAvatar();
     const name = randomName();
     const player = document.createElement('div');
+    const bankroll = 5000
     player.className = 'player'
     player.innerHTML = ` <div class="player__timer"></div>
         <div class="player__info">
-            <img class="player__info-img" src="${avatar}" alt="">
+            <div class="player__info-img">
+                <img src="${avatar}" alt="">
+                <span>${countPlayer}</span>
+            </div>
             <div class="player__info-amount">
-                <span>Amount</span>
+                <span>${bankroll}</span>
                 <img src="./asset/Players/amoutIMG.png" alt="">
             </div>
             <div class="player__info-name">
@@ -51,6 +55,5 @@ btnAddPlayer.addEventListener('click', () => {
     if(countPlayer === maxPlayer) {
         btnAddPlayer.disabled  =  true;
         btnAddPlayer.style.display = 'none'
-        alert('Maxt PLayers')
     }
 })
