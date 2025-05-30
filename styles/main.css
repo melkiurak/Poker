@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Dela+Gothic+One:regular);
 html,
 body {
   height: 100%;
@@ -19,8 +19,8 @@ h6 {
 }
 h2 {
   font-size: 48px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
 }
 .container {
   max-width: 1935px;
@@ -92,4 +92,47 @@ h2 {
   h2 {
     padding-right: 0.25rem;
   }
+}
+.player__info {
+  width: 15rem;
+  position: relative;
+}
+.player__info-amount {
+  width: 100%;
+  background-color: #40525e;
+  color: #98dee3;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+  img {
+    padding-right: 1rem;
+  }
+}
+.player__info-name {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: #374752;
+  color: #727f87;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  padding: 0.5rem 0;
+  span {
+    padding-right: 1rem;
+  }
+}
+.player__info-img {
+  position: absolute;
+  top: 50%;
+  left: 0.25rem;
+  transform: translateY(-50%);
 }
