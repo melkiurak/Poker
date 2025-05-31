@@ -23,32 +23,21 @@ function randomName() {
     return nameList[nameIndex]
 };
 function postitonPlayer(player, index, total) {
-    if(index === 0) {
+
+    if (index === 0) {
         player.style.left = '50%';
         player.style.bottom = '-40px';
+        player.style.top = '';
         player.style.transform = 'translateX(-50%)';
+        return;
     }
-    if(total === 2){
-        const positions = [
-            { left: '50%', bottom: '-40px', transform: 'translateX(-50%)' },
-            { left: '10%', top: '0'},
-            { right: '10%', top: '0'},
-        ];
-        player.style.left = positions[index].left || '';
-        player.style.right = positions[index].right || '';
-        player.style.bottom = positions[index].bottom || '';
-        player.style.top = positions[index].top || '';
-        player.style.transform = positions[index].transform;
-    }  
-    if(total === 1){
-          const positions = [
-            { left: '50%', bottom: '-40px', transform: 'translateX(-50%)' },
-            { left: '50%', top: '-40px', transform: 'translateX(-50%)' },
-        ];
-        player.style.left = positions[index].left || '';
-        player.style.bottom = positions[index].bottom || '';
-        player.style.top = positions[index].top || '';
-        player.style.transform = positions[index].transform || '';
+
+    if (total === 2 && index === 1) {
+        player.style.left = '50%';
+        player.style.top = '-40px';
+        player.style.bottom = '';
+        player.style.transform = 'translateX(-50%)';
+        return;
     }
 }
 function createPlayer() {
@@ -73,12 +62,13 @@ function createPlayer() {
         </div>
     `
     playerWrapper.appendChild(player)
-    postitonPlayer(player, countPlayer - 1, maxPlayer)
+    postitonPlayer(player, countPlayer - 1, countPlayer)
 };
 btnAddPlayer.addEventListener('click', () => {
     if(countPlayer < maxPlayer){
         countPlayer++;
         createPlayer();
+        console.log('Общее количество', countPlayer)
     }
     if(countPlayer === maxPlayer) {
         btnAddPlayer.disabled  =  true;
