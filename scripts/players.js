@@ -36,14 +36,12 @@ function postitonPlayer(player, index, total) {
         player.style.top = '-40px';
         player.style.bottom = '';
         player.style.transform = 'translateX(-50%)';
-        return;
     }
 }
 function createPlayer() {
     const avatar = randomAvatar();
     const name = randomName();
     const player = document.createElement('div');
-    const startChips = 5000
     const bankroll = 5000
     player.className = 'player'
     player.innerHTML = `<div class="player__timer"></div>
@@ -53,9 +51,7 @@ function createPlayer() {
                 <span>${countPlayer}</span>
             </div>
             <div class="player__info-amount">
-                <span>${startChips}</span>
                 <span>${bankroll}</span>
-
                 <img src="./asset/Players/amoutIMG.png" alt="">
             </div>
             <div class="player__info-name">
