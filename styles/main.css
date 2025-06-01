@@ -88,6 +88,7 @@ h2 {
 .player {
   position: absolute;
 }
+
 .player__info {
   width: 240px;
   position: relative;
@@ -102,18 +103,22 @@ h2 {
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   gap: 8px;
   padding: 12px 0;
   img {
     padding-right: 16px;
   }
 }
+.player__info-amount-main {
+  justify-content: flex-end;
+}
+.player__info-amount-other {
+  justify-content: flex-start;
+}
 .player__info-name {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   background-color: #374752;
   color: #727f87;
   font-family: "Dela Gothic One", sans-serif;
@@ -125,12 +130,17 @@ h2 {
     padding-right: 16px;
   }
 }
+.player__info-name-main {
+  justify-content: flex-end;
+}
+.player__info-name-other {
+  justify-content: flex-start;
+}
 .player__info-img {
   display: flex;
   gap: 0.5rem;
   position: absolute;
   top: 50%;
-  left: 4px;
   transform: translateY(-50%);
   span {
     padding: 12px 0;
@@ -139,5 +149,17 @@ h2 {
     font-size: 0.9375rem;
     font-family: "Poppins", sans-serif;
     font-weight: 800;
+  }
+}
+.player__info-img-main {
+  left: 4px;
+}
+.player__info-img-other {
+  right: 4px;
+  span {
+    order: 1;
+  }
+  img {
+    order: 2;
   }
 }

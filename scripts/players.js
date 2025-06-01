@@ -95,6 +95,7 @@ function postitonPlayer(player, index, total) {
     player.style.transform = '';
 
     const position = playerPositions[total]?.[index];
+
     if(position){
         for(const prop in position){
             player.style[prop] = position[prop];
@@ -105,19 +106,24 @@ function createPlayer() {
     const avatar = randomAvatar();
     const name = randomName();
     const player = document.createElement('div');
-    const bankroll = 5000
-    player.className = 'player'
+    const bankroll = 5000;
+    player.classList.add('player');
+    const isMainPlayer = countPlayer === 0;
+    const playerImgClass = isMainPlayer ? 'player__info-img-main' : 'player__info-img-other';
+    const playerAmountClass = isMainPlayer ? 'player__info-amount-main' : 'player__info-amount-other';
+    const playerNameClass = isMainPlayer ? 'player__info-name-main' : 'player__info-name-other';
+
     player.innerHTML = `<div class="player__timer"></div>
         <div class="player__info">
-            <div class="player__info-img">
+            <div class="player__info-img ${playerImgClass}">
                 <img src="${avatar}" alt="">
-                <span>${countPlayer}</span>
+                <span>${countPlayer + 1}</span>
             </div>
-            <div class="player__info-amount">
+            <div class="player__info-amount ${playerAmountClass}">
                 <span>${bankroll}</span>
                 <img src="./asset/Players/amoutIMG.png" alt="">
             </div>
-            <div class="player__info-name">
+            <div class="player__info-name ${playerNameClass}">
                 <span>${name}</span>
             </div>
         </div>
@@ -129,8 +135,8 @@ function createPlayer() {
 
 btnAddPlayer.addEventListener('click', () => {
     if(countPlayer < maxPlayer){
-        countPlayer++;
         createPlayer();
+        countPlayer++;
         console.log('Общее количество', countPlayer)
     }
     if(countPlayer === maxPlayer) {
