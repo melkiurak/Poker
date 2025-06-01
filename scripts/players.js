@@ -40,8 +40,9 @@ function postitonPlayer(player, index, total) {
             player.style.transform = 'translateX(-50%)';
             break;
         case 1:
-            if(total === 8) {
-                player.style.transform = ''
+            if(total === 8 || total === 9) {
+                player.style.left = '5%';
+                player.style.bottom = '10%';
             } else if(total === 5 || total === 6 || total === 7) {
                 player.style.left = '-4%';
                 player.style.bottom = '19%';
@@ -64,16 +65,27 @@ function postitonPlayer(player, index, total) {
             break;
         case 2: 
             if(total === 9) {
+                player.style.left = '-10%';
                 player.style.transform = ''
-            } else if(total === 5 || total === 6 || total === 7){
+                player.style.top = '50%';
+                player.style.right = '';
+            } else if(total === 8){
+                player.style.left = '-10%';
+                player.style.transform = 'translateY(-50%)';
+                player.style.top = '50%';
+                player.style.right = '';
+            } 
+            else if(total === 5 || total === 6 || total === 7){
                 player.style.left = '-4%';
                 player.style.top = '19%';
                 player.style.transform = ''
+                player.style.right = '';
             }
              else if(total === 4) {
                 player.style.left = '50%';
                 player.style.transform = 'translateX(-50%)';
                 player.style.top = '-25px';
+                player.style.right = '';
             }
              else if(total === 3) {
                 player.style.right = '14%';
@@ -81,12 +93,20 @@ function postitonPlayer(player, index, total) {
             }
             break;
         case 3:
-            if(total === 7) {
-                player.style.left = '25%';
+            if(total === 9) {
+                player.style.left = '0%';
+                player.style.top = '20%';
+            } else if(total === 8){
+                player.style.left = '5%';
+                player.style.top = '10%';
+            } 
+            else if(total === 7) {
+                player.style.left = '26%';
                 player.style.transform = 'translateX(-25%)';
                 player.style.top = '-5px';
                 player.style.right = '';
-            } else if(total === 6) {
+            } 
+            else if(total === 6) {
                 player.style.left = '50%';
                 player.style.transform = 'translateX(-50%)';
                 player.style.top = '-25px';
@@ -104,11 +124,23 @@ function postitonPlayer(player, index, total) {
             }
             break; 
         case 4: 
-            if(total === 7){
-                player.style.right = '25%';
+            if(total === 9){
+                player.style.left = '24%';
+                player.style.transform = '';
+                player.style.top = '0%';
+                player.style.right = '';
+            } else if (total === 8){
+                player.style.left = '50%';
+                player.style.transform = 'translateX(-50%)';
+                player.style.top = '-25px';
+                player.style.right = '';
+            } 
+            else if(total === 7){
+                player.style.right = '21%';
                 player.style.top = '-5px';
                 player.style.transform = '';
-            } else if(total === 6) {
+            } 
+            else if(total === 6) {
                 player.style.right = '-4%';
                 player.style.top = '19%';
                 player.style.transform = ''
@@ -120,24 +152,57 @@ function postitonPlayer(player, index, total) {
             }
             break;
         case 5:
-            if(total === 7){
+            if(total === 9){
+                player.style.right = '25%';
+                player.style.top = '0%';
+                player.style.transform = ''
+            } else if(total === 8) {
+                player.style.right = '5%';
+                player.style.top = '10%';
+                player.style.transform = ''
+            } 
+            else if(total === 7){
                 player.style.right = '-4%';
                 player.style.top = '19%';
                 player.style.transform = ''
-            }else if(total === 6){
+            }
+            else if(total === 6){
                 player.style.right = '-4%';
                 player.style.bottom = '19%';
                 player.style.transform = ''
             }
             break;
         case 6: 
-            if(total === 8){
-                player.style.transform = ''
-            }else if( total === 7){
+            if(total === 9){
+                player.style.transform = '';
+                player.style.right = '0%';
+                player.style.top = '20%';
+            } else if(total === 8){
+                player.style.transform = 'translateY(-50%)';
+                player.style.top = '50%';
+                player.style.right = '-10%'
+            }
+            else if( total === 7){
                 player.style.right = '-4%';
                 player.style.bottom = '19%';
                 player.style.transform = ''
             }
+            break;
+        case 7: 
+            if(total === 9){
+                player.style.top = '50%';
+                player.style.right = '-10%';
+            }else if( total === 8){
+                player.style.right = '5%';
+                player.style.bottom = '10%';
+            }
+            break;
+        case 8: 
+            if(total === 9) {
+                player.style.right = '5%';
+                player.style.bottom = '10%';
+                player.style.transform = ''
+        }
     } 
 }
 function createPlayer() {
