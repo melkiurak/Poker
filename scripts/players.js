@@ -8,6 +8,12 @@ const avatarList = [
     '/asset/Players/Avatar5.png',
 ]
 const nameList = ["Jack","Max","Leo","Cody","Ace","Duke","Chase","Finn","Blake"]
+const positions = [
+  { left: '50%', bottom: '-40px', transform: 'translateX(-50%)' },
+  { left: '20%', top: '10px' },
+  { left: '80%', top: '10px' }
+]
+
 
 let countPlayer = 0
 let maxPlayer = 9
@@ -22,21 +28,117 @@ function randomName() {
     return nameList[nameIndex]
 };
 function postitonPlayer(player, index, total) {
+    player.style.left = '';
+    player.style.top = '';
+    player.style.bottom = '';
+    player.style.transform = '';
 
-    if (index === 0) {
-        player.style.left = '50%';
-        player.style.bottom = '-40px';
-        player.style.top = '';
-        player.style.transform = 'translateX(-50%)';
-        return;
-    }
-
-    if (total === 2 && index === 1) {
-        player.style.left = '50%';
-        player.style.top = '-40px';
-        player.style.bottom = '';
-        player.style.transform = 'translateX(-50%)';
-    }
+    switch(index){
+        case 0: 
+            player.style.left = '50%';
+            player.style.bottom = '-25px';
+            player.style.transform = 'translateX(-50%)';
+            break;
+        case 1:
+            if(total === 8) {
+                player.style.transform = ''
+            } else if(total === 5 || total === 6 || total === 7) {
+                player.style.left = '-4%';
+                player.style.bottom = '19%';
+                player.style.transform = ''
+            }
+            else if(total === 4){
+                player.style.left = '-10%';
+                player.style.top = '50%';
+                player.style.transform = 'translateY(-50%)'
+            }
+            else if(total === 3){
+                player.style.left = '14%';
+                player.style.top = '0px';
+            }
+             else if(total === 2) {
+                player.style.left = '50%';
+                player.style.transform = 'translateX(-50%)';
+                player.style.top = '-25px';
+            }
+            break;
+        case 2: 
+            if(total === 9) {
+                player.style.transform = ''
+            } else if(total === 5 || total === 6 || total === 7){
+                player.style.left = '-4%';
+                player.style.top = '19%';
+                player.style.transform = ''
+            }
+             else if(total === 4) {
+                player.style.left = '50%';
+                player.style.transform = 'translateX(-50%)';
+                player.style.top = '-25px';
+            }
+             else if(total === 3) {
+                player.style.right = '14%';
+                player.style.top = '0px';
+            }
+            break;
+        case 3:
+            if(total === 7) {
+                player.style.left = '25%';
+                player.style.transform = 'translateX(-25%)';
+                player.style.top = '-5px';
+                player.style.right = '';
+            } else if(total === 6) {
+                player.style.left = '50%';
+                player.style.transform = 'translateX(-50%)';
+                player.style.top = '-25px';
+                player.style.right = '';
+            } 
+            else if(total === 5) {
+                player.style.right = '-4%';
+                player.style.top = '19%';
+                player.style.transform = ''
+            } 
+            else if(total === 4) {
+                player.style.right = '-10%';
+                player.style.top = '50%';
+                player.style.transform = 'translateY(-50%)'
+            }
+            break; 
+        case 4: 
+            if(total === 7){
+                player.style.right = '25%';
+                player.style.top = '-5px';
+                player.style.transform = '';
+            } else if(total === 6) {
+                player.style.right = '-4%';
+                player.style.top = '19%';
+                player.style.transform = ''
+            }
+            else if(total === 5){
+                player.style.right = '-4%';
+                player.style.bottom = '19%';
+                player.style.transform = ''
+            }
+            break;
+        case 5:
+            if(total === 7){
+                player.style.right = '-4%';
+                player.style.top = '19%';
+                player.style.transform = ''
+            }else if(total === 6){
+                player.style.right = '-4%';
+                player.style.bottom = '19%';
+                player.style.transform = ''
+            }
+            break;
+        case 6: 
+            if(total === 8){
+                player.style.transform = ''
+            }else if( total === 7){
+                player.style.right = '-4%';
+                player.style.bottom = '19%';
+                player.style.transform = ''
+            }
+    } 
 }
 function createPlayer() {
     const avatar = randomAvatar();
@@ -60,7 +162,8 @@ function createPlayer() {
         </div>
     `
     playerWrapper.appendChild(player);
-    postitonPlayer(player, countPlayer - 1, countPlayer)
+    const allPlayers = document.querySelectorAll('.player');
+    allPlayers.forEach((player, index) => postitonPlayer(player, index, allPlayers.length))
 };
 
 btnAddPlayer.addEventListener('click', () => {
