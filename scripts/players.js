@@ -107,14 +107,15 @@ function createPlayer() {
     const name = randomName();
     const player = document.createElement('div');
     const bankroll = 5000;
-    player.classList.add('player');
     const isMainPlayer = countPlayer === 0;
+    player.classList.add('player', isMainPlayer ? 'player__main' : 'player__other');
+    const playerInfoClass = isMainPlayer ? 'player__info-main' : 'player__info-other';
     const playerImgClass = isMainPlayer ? 'player__info-img-main' : 'player__info-img-other';
     const playerAmountClass = isMainPlayer ? 'player__info-amount-main' : 'player__info-amount-other';
     const playerNameClass = isMainPlayer ? 'player__info-name-main' : 'player__info-name-other';
 
     player.innerHTML = `<div class="player__timer"></div>
-        <div class="player__info">
+        <div class="${playerInfoClass}">
             <div class="player__info-img ${playerImgClass}">
                 <img src="${avatar}" alt="">
                 <span>${countPlayer + 1}</span>
@@ -127,6 +128,7 @@ function createPlayer() {
                 <span>${name}</span>
             </div>
         </div>
+        ${isMainPlayer ? `` : '<div class="player__line first__line"></div> <div class="player__line second__line"></div>'}
     `
     playerWrapper.appendChild(player);
     const allPlayers = document.querySelectorAll('.player');
