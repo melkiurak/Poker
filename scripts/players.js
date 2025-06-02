@@ -74,10 +74,10 @@ const playerPositions = {
     }
 };
 
-
-let countPlayer = 0
-let maxPlayer = 9
-
+const playerState = {
+    countPlayer: 0,
+    maxPlayer: 9,
+}
 
 function randomAvatar()  {
     const avatarIndex = Math.floor(Math.random() * avatarList.length)
@@ -92,7 +92,7 @@ function createPlayer() {
     const name = randomName();
     const player = document.createElement('div');
     const bankroll = 5000;
-    const isMainPlayer = countPlayer === 0;
+    const isMainPlayer = playerState.countPlayer === 0;
 
     player.classList.add('player', isMainPlayer ? 'player__main' : 'player__other');
     
@@ -105,7 +105,7 @@ function createPlayer() {
         <div class="${playerInfoClass}">
             <div class="player__info-img ${playerImgClass}">
                 <img src="${avatar}" alt="">
-                <span>${countPlayer + 1}</span>
+                <span>${playerState.countPlayer + 1}</span>
             </div>
             <div class="player__info-amount ${playerAmountClass}">
                 <span>${bankroll}</span>
@@ -154,12 +154,12 @@ function postitonPlayer(player, index, total) {
     }
 }
 btnAddPlayer.addEventListener('click', () => {
-    if(countPlayer < maxPlayer){
+    if(playerState.countPlayer < playerState.maxPlayer){
         createPlayer();
-        countPlayer++;
-        console.log('Общее количество', countPlayer)
+        playerState.countPlayer++;
+        console.log('Общее количество', playerState.countPlayer)
     }
-    if(countPlayer === maxPlayer) {
+    if(playerState.countPlayer === playerState.maxPlayer) {
         btnAddPlayer.disabled  =  true;
         btnAddPlayer.style.display = 'none'
     }
