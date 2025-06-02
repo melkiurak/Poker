@@ -108,6 +108,8 @@ function createPlayer() {
     const player = document.createElement('div');
     const bankroll = 5000;
     const isMainPlayer = countPlayer === 0;
+    const sidePlayer = window.getComputedStyle(player).left;
+    player.classList.add('player', sidePlayer !== '' ? 'player__side-left' : 'player__side-right' )
     player.classList.add('player', isMainPlayer ? 'player__main' : 'player__other');
     const playerInfoClass = isMainPlayer ? 'player__info-main' : 'player__info-other';
     const playerImgClass = isMainPlayer ? 'player__info-img-main' : 'player__info-img-other';
