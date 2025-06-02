@@ -94,12 +94,22 @@ function postitonPlayer(player, index, total) {
     player.style.right = '';
     player.style.transform = '';
 
+    player.classList.remove('player__side-left', 'player__side-right');
+
     const position = playerPositions[total]?.[index];
+
 
     if(position){
         for(const prop in position){
             player.style[prop] = position[prop];
         }
+        if ('left' in position && parseFloat(position.left) <= 49) {
+            player.classList.add('player__side-left');
+            player.style.transform = `${position.transform ? position.transform + ' ' : ''}scaleX(-1)`;
+        } else if ('right' in position && parseFloat(position.right) <= 49) {
+            player.classList.add('player__side-right');
+        }
+        
     }
 }
 function createPlayer() {
@@ -108,9 +118,9 @@ function createPlayer() {
     const player = document.createElement('div');
     const bankroll = 5000;
     const isMainPlayer = countPlayer === 0;
-    const sidePlayer = window.getComputedStyle(player).left;
-    player.classList.add('player', sidePlayer !== '' ? 'player__side-left' : 'player__side-right' )
+
     player.classList.add('player', isMainPlayer ? 'player__main' : 'player__other');
+    
     const playerInfoClass = isMainPlayer ? 'player__info-main' : 'player__info-other';
     const playerImgClass = isMainPlayer ? 'player__info-img-main' : 'player__info-img-other';
     const playerAmountClass = isMainPlayer ? 'player__info-amount-main' : 'player__info-amount-other';
@@ -135,6 +145,7 @@ function createPlayer() {
     playerWrapper.appendChild(player);
     const allPlayers = document.querySelectorAll('.player');
     allPlayers.forEach((player, index) => postitonPlayer(player, index, allPlayers.length))
+
 };
 
 btnAddPlayer.addEventListener('click', () => {
