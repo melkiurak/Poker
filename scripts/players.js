@@ -87,31 +87,6 @@ function randomName() {
     const nameIndex = Math.floor(Math.random() * nameList.length)
     return nameList[nameIndex]
 };
-function postitonPlayer(player, index, total) {
-    player.style.left = '';
-    player.style.top = '';
-    player.style.bottom = '';
-    player.style.right = '';
-    player.style.transform = '';
-
-    player.classList.remove('player__side-left', 'player__side-right');
-
-    const position = playerPositions[total]?.[index];
-
-
-    if(position){
-        for(const prop in position){
-            player.style[prop] = position[prop];
-        }
-        if ('left' in position && parseFloat(position.left) <= 49) {
-            player.classList.add('player__side-left');
-            player.style.transform = `${position.transform ? position.transform + ' ' : ''}scaleX(-1)`;
-        } else if ('right' in position && parseFloat(position.right) <= 49) {
-            player.classList.add('player__side-right');
-        }
-        
-    }
-}
 function createPlayer() {
     const avatar = randomAvatar();
     const name = randomName();
@@ -147,7 +122,37 @@ function createPlayer() {
     allPlayers.forEach((player, index) => postitonPlayer(player, index, allPlayers.length))
 
 };
+function postitonPlayer(player, index, total) {
+    player.style.left = '';
+    player.style.top = '';
+    player.style.bottom = '';
+    player.style.right = '';
+    player.style.transform = '';
 
+    player.classList.remove('player__side-left', 'player__side-right');
+
+    const position = playerPositions[total]?.[index];
+    const playerImg = player.querySelector('.player__info-img');
+    const playerAmount = player.querySelector('.player__info-amount');
+    const playerName = player.querySelector('.player__info-name')
+    if(position){
+        for(const prop in position){
+            player.style[prop] = position[prop];
+        }
+        if ('left' in position && parseFloat(position.left) <= 49) {
+            player.classList.add('player__side-left');
+            player.style.transform = `${position.transform ? position.transform + ' ' : ''}scaleX(-1)`;
+            playerImg.classList.add('player__info-img-side');
+            playerAmount.classList.add('player__info-amount-side');
+            playerName.classList.add('player__info-name-side');
+
+            
+        } else if ('right' in position && parseFloat(position.right) <= 49) {
+            player.classList.add('player__side-right');
+        }
+        
+    }
+}
 btnAddPlayer.addEventListener('click', () => {
     if(countPlayer < maxPlayer){
         createPlayer();

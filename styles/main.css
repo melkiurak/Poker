@@ -137,7 +137,6 @@ h2 {
   padding: 8px 0;
   justify-content: flex-end;
   border-radius: 0 0 3px 3px;
-
   span {
     padding-right: 16px;
   }
@@ -154,6 +153,7 @@ h2 {
   top: 50%;
   transform: translateY(-50%);
   left: 4px;
+  z-index: 10;
   span {
     padding: 12px 0;
     color: #727f87;
@@ -177,4 +177,31 @@ h2 {
 }
 .second__line {
   right: -25px;
+}
+.player__info-img-side {
+  transform: translateY(-50%) scaleX(-1);
+  img {
+    order: 2;
+  }
+  span {
+    order: 1;
+  }
+}
+.player__info-amount-side {
+  transform: scaleX(-1);
+  justify-content: flex-start;
+  img {
+    padding: 0 0 0 28px;
+    order: 1;
+  }
+  span {
+    order: 2;
+  }
+}
+.player__info-name-side {
+  transform: scaleX(-1);
+  justify-content: flex-start;
+  span {
+    padding: 0 0 0 48px;
+  }
 }
