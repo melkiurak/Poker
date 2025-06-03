@@ -1,3 +1,5 @@
+import { getCardPlayer } from "./cards.js";
+
 const playerWrapper = document.getElementById('player__wrapper');
 const btnAddPlayer = document.getElementById('addPlayer');
 const avatarList = [
@@ -87,6 +89,9 @@ function randomName() {
     const nameIndex = Math.floor(Math.random() * nameList.length)
     return nameList[nameIndex]
 };
+function resetStyles(element){
+    element.removeAttribute('style');
+};
 function createPlayer() {
     const avatar = randomAvatar();
     const name = randomName();
@@ -119,15 +124,11 @@ function createPlayer() {
     `
     playerWrapper.appendChild(player);
     const allPlayers = document.querySelectorAll('.player');
-    allPlayers.forEach((player, index) => postitonPlayer(player, index, allPlayers.length))
-
+    allPlayers.forEach((player, index) => postitonPlayer(player, index, allPlayers.length));
+    getCardPlayer(allPlayers.length);
 };
 function postitonPlayer(player, index, total) {
-    player.style.left = '';
-    player.style.top = '';
-    player.style.bottom = '';
-    player.style.right = '';
-    player.style.transform = '';
+    resetStyles(player)
 
     player.classList.remove('player__side-left', 'player__side-right');
 
@@ -157,7 +158,6 @@ btnAddPlayer.addEventListener('click', () => {
     if(playerState.countPlayer < playerState.maxPlayer){
         createPlayer();
         playerState.countPlayer++;
-        console.log('Общее количество', playerState.countPlayer)
     }
     if(playerState.countPlayer === playerState.maxPlayer) {
         btnAddPlayer.disabled  =  true;

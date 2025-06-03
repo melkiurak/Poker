@@ -1,9 +1,8 @@
-const cardContainer = document.querySelector('.table__area-cards')
+const cardContainer = document.querySelector('.table__area-cards');
+
 const suits = ['Diamonds', 'Clubs', 'Spades', 'Hearts']
 const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A']
 const cards = [];
-const players = 2;
-
 for(const suit of suits){
     for(const value of values){
         cards.push({suit, value})
@@ -18,9 +17,13 @@ function randomCard(count){
     }
     return cardsPlayer;
 }
-const playersCards = [];
-for(let i = 0; i < players; i++){
-    playersCards.push(randomCard(2));
+export function getCardPlayer(players) {
+    const playersCards = []
+    for(let i = 0; i < players; i++){
+        playersCards.push(randomCard(2));
+    }
+    console.log(playersCards);
+    return playersCards;
 }
 const tableCards = randomCard(5);
 
@@ -39,7 +42,6 @@ const colorSuit = {
     Spades: '#98DEE3',
     Hearts: '#E97B88',
 }
-console.log(playersCards)
 console.log(tableCards)
 
 tableCards.forEach((card) => {
