@@ -125,7 +125,6 @@ function createPlayer() {
     playerWrapper.appendChild(player);
     const allPlayers = document.querySelectorAll('.player');
     allPlayers.forEach((player, index) => postitonPlayer(player, index, allPlayers.length));
-    getCardPlayer(allPlayers.length);
 };
 function postitonPlayer(player, index, total) {
     resetStyles(player)

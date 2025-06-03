@@ -3,6 +3,8 @@ const cardContainer = document.querySelector('.table__area-cards');
 const suits = ['Diamonds', 'Clubs', 'Spades', 'Hearts']
 const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A']
 const cards = [];
+
+
 for(const suit of suits){
     for(const value of values){
         cards.push({suit, value})
