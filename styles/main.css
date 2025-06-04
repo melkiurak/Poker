@@ -234,6 +234,12 @@ h3 {
   font-size: 15px;
   font-weight: 800;
 }
+.form__warning {
+  color: #727f87;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+}
 .table {
   display: flex;
   align-items: center;
