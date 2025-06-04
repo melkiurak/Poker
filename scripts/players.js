@@ -92,13 +92,12 @@ function randomName() {
 function resetStyles(element){
     element.removeAttribute('style');
 };
-function createPlayer() {
+export function createPlayer(playerName) {
     const avatar = randomAvatar();
-    const name = randomName();
     const player = document.createElement('div');
     const bankroll = 5000;
     const isMainPlayer = playerState.countPlayer === 0;
-
+    const name = isMainPlayer && playerName ? playerName : randomName();
     player.classList.add('player', isMainPlayer ? 'player__main' : 'player__other');
     
     const playerInfoClass = isMainPlayer ? 'player__info-main' : 'player__info-other';
