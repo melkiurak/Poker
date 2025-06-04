@@ -1,4 +1,5 @@
 import { getCardPlayer } from "./cards.js";
+import { cardToString } from "./main.js";
 
 const playerWrapper = document.getElementById('player__wrapper');
 const btnAddPlayer = document.getElementById('addPlayer');
@@ -92,11 +93,11 @@ function randomName() {
 function resetStyles(element){
     element.removeAttribute('style');
 };
-export function createPlayer(playerName) {
+export function createPlayer(playerName, index) {
     const avatar = randomAvatar();
     const player = document.createElement('div');
     const bankroll = 5000;
-    const isMainPlayer = playerState.countPlayer === 0;
+    const isMainPlayer = index === 0;
     const name = isMainPlayer && playerName ? playerName : randomName();
     player.classList.add('player', isMainPlayer ? 'player__main' : 'player__other');
     
@@ -106,10 +107,14 @@ export function createPlayer(playerName) {
     const playerNameClass = isMainPlayer ? 'player__info-name-main' : 'player__info-name-other';
 
     player.innerHTML = `<div class="player__timer"></div>
+        <div class="player__card">
+            <img src=${cardToString(card)}>
+            <h2></h2>
+        </div>
         <div class="${playerInfoClass}">
             <div class="player__info-img ${playerImgClass}">
                 <img src="${avatar}" alt="">
-                <span>${playerState.countPlayer + 1}</span>
+                <span>${index + 1}</span>
             </div>
             <div class="player__info-amount ${playerAmountClass}">
                 <span>${bankroll}</span>

@@ -1,3 +1,5 @@
+import { cardToString, colorSuit } from "./main.js";
+
 const suits = ['Diamonds', 'Clubs', 'Spades', 'Hearts']
 const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A']
 const cards = [];
@@ -26,21 +28,6 @@ export function getCardPlayer(players) {
     return playersCards;
 }
 
-function cardToString(card){
-    const suitSymbols = {
-        Diamonds: '/asset/Diamonds.png',
-        Clubs: '/asset/Club.png',
-        Spades: '/asset/Spades.png',
-        Hearts: '/asset/Heart.png',
-    };
-    return suitSymbols[card.suit]
-}
-const colorSuit = {
-    Diamonds: '#EAA680',
-    Clubs: '#7AA7FF',
-    Spades: '#98DEE3',
-    Hearts: '#E97B88',
-}
 
 export function renderCards(cardsArray, container) {
     container.innerHTML = '';

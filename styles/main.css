@@ -291,12 +291,16 @@ h3 {
     padding-right: 4px;
   }
 }
+.player__card {
+  position: absolute;
+}
 .player {
   position: absolute;
 }
 .player__other {
   width: 260px;
 }
+
 .player__info-main {
   width: 240px;
   position: relative;

@@ -46,9 +46,9 @@ function startGame() {
 
     for(let i = 0; i < texasHoldemState.countPlayers; i++){
         if(i===0){
-           createPlayer(texasHoldemState.namePLayer)
+           createPlayer(texasHoldemState.namePLayer, i)
         } else {
-            createPlayer();
+            createPlayer(null, i);
         }
     }
 
