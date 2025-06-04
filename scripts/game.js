@@ -1,8 +1,15 @@
+import { getCardPlayer } from "./cards.js";
+
 const texasHoldemBtn = document.getElementById('texasHoldem');
 const gameContainer = document.getElementById('gameContainer');
 const gameChoice = document.getElementById('gameChoice');
 const titleGame = document.getElementById('titleGame');
 
+
+export const texasHoldemState = {
+    namePLayer: '',
+    countPlayers: 0,
+}
 
 
 function optionsTexasHoldem() {
@@ -25,21 +32,31 @@ function optionsTexasHoldem() {
     gameContainer.appendChild(options);
     document.getElementById('gameForm').addEventListener('submit', verificationInput);
 }
+function startGame() {
+    getCardPlayer(texasHoldemState.countPlayers);
+}
+
 function verificationInput(e) {
     e.preventDefault();
+
     const checkName = /^[A-Za-zА-Яа-яЁё\s-]{2,30}$/;
     const name = document.getElementById('playerName').value.trim();
+    const players = +document.getElementById('playersCount').value;
+    const formGroup = document.getElementById('formGroup');
     const oldWarning = formGroup.querySelector('.form__warning');
     if (oldWarning) {
         oldWarning.remove();
     }
     if(!checkName.test(name.trim())){
-        const formGroup = document.getElementById("formGroup");
         const warning = document.createElement('p')
         warning.classList.add('form__warning')
         warning.textContent = 'Enter a name from 2 to 30 characters. Only letters, spaces and hyphens are allowed.';
         formGroup.appendChild(warning)
-    } 
+    } else {
+        texasHoldemState.namePLayer = name;
+        texasHoldemState.countPlayers = players;
+        startGame()
+    }
 }
 
 texasHoldemBtn.addEventListener('click', () => {
