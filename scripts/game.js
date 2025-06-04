@@ -1,5 +1,6 @@
-import { getCardPlayer } from "./cards.js";
+import { getCardPlayer, randomCard, renderCards } from "./cards.js";
 
+const cardContainer = document.querySelector('.table__area-cards');
 const texasHoldemBtn = document.getElementById('texasHoldem');
 const gameContainer = document.getElementById('gameContainer');
 const gameChoice = document.getElementById('gameChoice');
@@ -33,7 +34,11 @@ function optionsTexasHoldem() {
     document.getElementById('gameForm').addEventListener('submit', verificationInput);
 }
 function startGame() {
-    getCardPlayer(texasHoldemState.countPlayers);
+    const playersCards = getCardPlayer(texasHoldemState.countPlayers)
+    const tableCards = randomCard(5);
+    console.log('Table cards:', tableCards);
+    console.log('Игроки:', playersCards);
+    renderCards(tableCards, cardContainer);
 }
 
 function verificationInput(e) {
@@ -55,7 +60,7 @@ function verificationInput(e) {
     } else {
         texasHoldemState.namePLayer = name;
         texasHoldemState.countPlayers = players;
-        startGame()
+        startGame();
     }
 }
 
