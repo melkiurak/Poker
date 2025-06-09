@@ -53,7 +53,7 @@ function startGame() {
     const playersContainer = document.querySelectorAll('.player');
 
     playersContainer.forEach((playerContainer, index) => {
-        const playerCardContainer = playerContainer.querySelector('.player__info-cards');
+        const playerCardContainer = playerContainer.querySelector('.player__cards');
         renderCards(playersCards[index], playerCardContainer)
     })
 

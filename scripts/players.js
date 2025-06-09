@@ -19,8 +19,8 @@ const playerPositions = {
     },
     3: {
         0: { left: '50%', bottom: '-25px', transform: 'translateX(-50%)' }, 
-        1: { left: '14%', top: '0px' },                                   
-        2: { right: '14%', top: '0px' }                                   
+        1: { left: '14%', top: '0' },                                   
+        2: { right: '14%', top: '0' }                                   
     },
     4: {
         0: { left: '50%', bottom: '-25px', transform: 'translateX(-50%)' }, 
@@ -67,8 +67,8 @@ const playerPositions = {
         1: { left: '5%', bottom: '10%' },
         2: { left: '-10%', top: '50%' },
         3: { left: '0%', top: '20%' },
-        4: { left: '24%', top: '0%' },
-        5: { right: '25%', top: '0%' },
+        4: { left: '24%', top: '0' },
+        5: { right: '25%', top: '0' },
         6: { right: '0%', top: '20%' },
         7: { top: '50%', right: '-10%' },
         8: { right: '5%', bottom: '10%' }
@@ -100,14 +100,15 @@ export function createPlayer(playerName, index) {
     player.classList.add('player', isMainPlayer ? 'player__main' : 'player__other');
     
     const playerInfoClass = isMainPlayer ? 'player__info-main' : 'player__info-other';
+    const playerInfoCards = isMainPlayer ? 'player__cards-main' : 'player__cards-other';
     const playerImgClass = isMainPlayer ? 'player__info-img-main' : 'player__info-img-other';
     const playerAmountClass = isMainPlayer ? 'player__info-amount-main' : 'player__info-amount-other';
     const playerNameClass = isMainPlayer ? 'player__info-name-main' : 'player__info-name-other';
 
     player.innerHTML = `<div class="player__timer"></div>
+    <div class="player__cards ${playerInfoCards}">
+    </div>
         <div class="${playerInfoClass}">
-            <div class="player__info-cards">
-            </div>
             <div class="player__info-img ${playerImgClass}">
                 <img src="${avatar}" alt="">
                 <span>${index + 1}</span>
@@ -134,7 +135,11 @@ function positionPlayer(player, index, total) {
     const position = playerPositions[total]?.[index];
     const playerImg = player.querySelector('.player__info-img');
     const playerAmount = player.querySelector('.player__info-amount');
-    const playerName = player.querySelector('.player__info-name')
+    const playerName = player.querySelector('.player__info-name');
+    const playerCards = player.querySelector('.player__cards');
+    const playerCardsOther = player.querySelector('.player__cards-other');
+    const topValuePlayer = window.getComputedStyle(player).top;
+
     if(position){
         for(const prop in position){
             player.style[prop] = position[prop];
@@ -145,12 +150,14 @@ function positionPlayer(player, index, total) {
             playerImg.classList.add('player__info-img-side');
             playerAmount.classList.add('player__info-amount-side');
             playerName.classList.add('player__info-name-side');
-
+            playerCards.classList.add('player__cards-side')
             
-        } else if ('right' in position && parseFloat(position.right) <= 49) {
+        } else if(topValuePlayer === '0px'){
+            playerName.style.color = 'red'
+        } 
+        else if ('right' in position && parseFloat(position.right) <= 49) {
             player.classList.add('player__side-right');
-        }
-        
+        }        
     }
 }
 btnAddPlayer.addEventListener('click', () => {
