@@ -1,5 +1,3 @@
-import { getCardPlayer } from "./cards.js";
-import { cardToString } from "./main.js";
 
 const playerWrapper = document.getElementById('player__wrapper');
 const btnAddPlayer = document.getElementById('addPlayer');
@@ -107,18 +105,16 @@ export function createPlayer(playerName, index) {
     const playerNameClass = isMainPlayer ? 'player__info-name-main' : 'player__info-name-other';
 
     player.innerHTML = `<div class="player__timer"></div>
-        <div class="player__card">
-            <img src=${cardToString(card)}>
-            <h2></h2>
-        </div>
         <div class="${playerInfoClass}">
+            <div class="player__info-cards">
+            </div>
             <div class="player__info-img ${playerImgClass}">
                 <img src="${avatar}" alt="">
                 <span>${index + 1}</span>
             </div>
             <div class="player__info-amount ${playerAmountClass}">
                 <span>${bankroll}</span>
-                <img src="./asset/Players/amoutIMG.png" alt="">
+                <img src="../asset/Players/amountIMG.png" alt="">
             </div>
             <div class="player__info-name ${playerNameClass}">
                 <span>${name}</span>
@@ -128,9 +124,9 @@ export function createPlayer(playerName, index) {
     `
     playerWrapper.appendChild(player);
     const allPlayers = document.querySelectorAll('.player');
-    allPlayers.forEach((player, index) => postitonPlayer(player, index, allPlayers.length));
+    allPlayers.forEach((player, index) => positionPlayer(player, index, allPlayers.length));
 };
-function postitonPlayer(player, index, total) {
+function positionPlayer(player, index, total) {
     resetStyles(player)
 
     player.classList.remove('player__side-left', 'player__side-right');

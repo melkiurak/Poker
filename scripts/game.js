@@ -7,9 +7,8 @@ const gameContainer = document.getElementById('gameContainer');
 const gameChoice = document.getElementById('gameChoice');
 const titleGame = document.getElementById('titleGame');
 const game = document.getElementById('game')
-
 export const texasHoldemState = {
-    namePLayer: '',
+    namePlayer: '',
     countPlayers: 0,
     maxPlayer: 9,
 }
@@ -41,16 +40,22 @@ function startGame() {
     const playersCards = getCardPlayer(texasHoldemState.countPlayers)
     const tableCards = randomCard(5);
 
-    console.log('Table cards:', tableCards);
-    console.log('Игроки:', playersCards);
+    console.log('Table cards:',tableCards );
+    console.log('Players:', playersCards);
 
     for(let i = 0; i < texasHoldemState.countPlayers; i++){
         if(i===0){
-           createPlayer(texasHoldemState.namePLayer, i)
+           createPlayer(texasHoldemState.namePlayer, i)
         } else {
             createPlayer(null, i);
         }
     }
+    const playersContainer = document.querySelectorAll('.player');
+
+    playersContainer.forEach((playerContainer, index) => {
+        const playerCardContainer = playerContainer.querySelector('.player__info-cards');
+        renderCards(playersCards[index], playerCardContainer)
+    })
 
     renderCards(tableCards, cardContainer);
 
@@ -84,7 +89,7 @@ function verificationInput(e) {
         formGroupPlayers.appendChild(warning);
         return; 
     }
-    texasHoldemState.namePLayer = name;
+    texasHoldemState.namePlayer = name;
     texasHoldemState.countPlayers = players;
     startGame();
 }

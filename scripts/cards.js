@@ -20,7 +20,7 @@ export function randomCard(count){
     return cardsPlayer;
 }
 export function getCardPlayer(players) {
-    const playersCards = []
+    const playersCards = [];
     for(let i = 0; i < players; i++){
         playersCards.push(randomCard(2));
     }
@@ -30,7 +30,7 @@ export function getCardPlayer(players) {
 
 
 export function renderCards(cardsArray, container) {
-    container.innerHTML = '';
+    container.innerHTML = ''
     cardsArray.forEach(card => {
         const cardElement = document.createElement('div');
         const suitImg = document.createElement('img');
