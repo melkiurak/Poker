@@ -1,4 +1,3 @@
-
 const playerWrapper = document.getElementById('player__wrapper');
 const btnAddPlayer = document.getElementById('addPlayer');
 const avatarList = [
@@ -127,6 +126,7 @@ export function createPlayer(playerName, index) {
     const allPlayers = document.querySelectorAll('.player');
     allPlayers.forEach((player, index) => positionPlayer(player, index, allPlayers.length));
 };
+
 function positionPlayer(player, index, total) {
     resetStyles(player)
 
@@ -137,7 +137,6 @@ function positionPlayer(player, index, total) {
     const playerAmount = player.querySelector('.player__info-amount');
     const playerName = player.querySelector('.player__info-name');
     const playerCards = player.querySelector('.player__cards');
-
     if(position){
         for(const prop in position){
             player.style[prop] = position[prop];

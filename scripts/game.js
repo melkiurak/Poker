@@ -1,4 +1,4 @@
-import { getCardPlayer, randomCard, renderCards } from "./cards.js";
+import { distributionOfCards, getCardPlayer, randomCard, renderCards } from "./cards.js";
 import { createPlayer } from "./players.js";
 
 const cardContainer = document.querySelector('.table__area-cards');
@@ -6,7 +6,8 @@ const texasHoldemBtn = document.getElementById('texasHoldem');
 const gameContainer = document.getElementById('gameContainer');
 const gameChoice = document.getElementById('gameChoice');
 const titleGame = document.getElementById('titleGame');
-const game = document.getElementById('game')
+const game = document.getElementById('game');
+
 export const texasHoldemState = {
     namePlayer: '',
     countPlayers: 0,
@@ -34,22 +35,23 @@ function optionsTexasHoldem() {
     gameContainer.appendChild(options);
     document.getElementById('gameForm').addEventListener('submit', verificationInput);
 }
-function startGame() {
+async function startGame() {
     game.style.display = 'none';
-
-    const playersCards = getCardPlayer(texasHoldemState.countPlayers)
-    const tableCards = randomCard(5);
-
-    console.log('Table cards:',tableCards );
-    console.log('Players:', playersCards);
-
     for(let i = 0; i < texasHoldemState.countPlayers; i++){
         if(i===0){
-           createPlayer(texasHoldemState.namePlayer, i)
+            createPlayer(texasHoldemState.namePlayer, i)
         } else {
             createPlayer(null, i);
         }
     }
+    await distributionOfCards(texasHoldemState.countPlayers);
+
+    
+    const playersCards = getCardPlayer(texasHoldemState.countPlayers);
+    const tableCards = randomCard(5);
+
+    console.log('Table cards:',tableCards );
+    console.log('Players:', playersCards);
     const playersContainer = document.querySelectorAll('.player');
 
     playersContainer.forEach((playerContainer, index) => {
