@@ -137,8 +137,6 @@ function positionPlayer(player, index, total) {
     const playerAmount = player.querySelector('.player__info-amount');
     const playerName = player.querySelector('.player__info-name');
     const playerCards = player.querySelector('.player__cards');
-    const playerCardsOther = player.querySelector('.player__cards-other');
-    const topValuePlayer = window.getComputedStyle(player).top;
 
     if(position){
         for(const prop in position){
@@ -152,8 +150,6 @@ function positionPlayer(player, index, total) {
             playerName.classList.add('player__info-name-side');
             playerCards.classList.add('player__cards-side')
             
-        } else if(topValuePlayer === '0px'){
-            playerName.style.color = 'red'
         } 
         else if ('right' in position && parseFloat(position.right) <= 49) {
             player.classList.add('player__side-right');
