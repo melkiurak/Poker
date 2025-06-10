@@ -1,15 +1,23 @@
 import { cardToString, colorSuit } from "./main.js";
 
-const suits = ['Diamonds', 'Clubs', 'Spades', 'Hearts']
-const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A']
+const suits = ['Diamonds', 'Clubs', 'Spades', 'Hearts'];
+const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
 const cards = [];
-
+const positionDeckCard = ['deck__card-top', 'deck__card-middle', 'deck__card-bottom'];
+const deck = document.getElementById('deck');
 
 for(const suit of suits){
     for(const value of values){
         cards.push({suit, value})
     };
 };
+
+for(let i = 0; i<3; i++){
+    const deckCard = document.createElement('div');
+    deckCard.classList.add('deck__card', positionDeckCard[i])
+    deck.appendChild(deckCard);
+}
+
 export function randomCard(count){
     let cardsPlayer = [];
     for(let i = 0; i < count; i++){

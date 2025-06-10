@@ -441,3 +441,34 @@ h3 {
     font-size: 32px;
   }
 }
+
+.deck {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.deck__card {
+  width: 80px;
+  height: 120px;
+  border-radius: 8px;
+  background-image: url("../asset/card/10081449.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid #40525e;
+  position: absolute;
+}
+
+.deck__card-middle {
+  top: 2px;
+  left: 2px;
+  z-index: -1;
+}
+
+.deck__card-bottom {
+  top: 4px;
+  left: 4px;
+  z-index: -2;
+}

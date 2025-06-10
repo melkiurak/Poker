@@ -1,9 +1,10 @@
+
 export function cardToString(card){
     const suitSymbols = {
-        Diamonds: '/asset/Diamonds.png',
-        Clubs: '/asset/Club.png',
-        Spades: '/asset/Spades.png',
-        Hearts: '/asset/Heart.png',
+        Diamonds: '/asset/card/Diamonds.png',
+        Clubs: '/asset/card/Club.png',
+        Spades: '/asset/card/Spades.png',
+        Hearts: '/asset/card/Heart.png',
     };
     return suitSymbols[card.suit]
 }
