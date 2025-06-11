@@ -54,7 +54,6 @@ function animateCard(position, i, j){
             deck.remove()
         }, 2500)
     }, 200 * (i * 2 + j));
-
 }
 
 export function randomCard(count){
