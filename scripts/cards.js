@@ -3,12 +3,7 @@ import { cardToString, colorSuit } from "./main.js";
 const suits = ['Diamonds', 'Clubs', 'Spades', 'Hearts'];
 const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
 const cards = [];
-const players = document.querySelectorAll('.player')
 
-const targetPositions  = Array.from(players).map((player) => {
-    const rect = player.getBoundingClientRect();
-    return {x: rect.left, y: rect.top}
-})
 
 for(const suit of suits){
     for(const value of values){
@@ -17,27 +12,35 @@ for(const suit of suits){
 };
 
 export function distributionOfCards(player) {
+    const players = document.querySelectorAll('.player');
     const positionDeckCard = ['deck__card-top', 'deck__card-middle', 'deck__card-bottom'];
     const deck = document.getElementById('deck');
-    const deckCards = []; 
-    for(let i = 0; i < player; i++){
-        for(let i = 0; i < 2; i++){
+    const tableCards = document.querySelector('.table__area-cards').getBoundingClientRect();
+    console.log(tableCards.left, tableCards.top);
+    
+    const targetPositions  = Array.from(players).map((player) => {
+        const rect = player.getBoundingClientRect();
+        return {x: rect.left, y: rect.top}
+    });
+    
+    console.log(targetPositions)
+    
+    for (let i = 0; i < player; i++) {
+        for (let j = 0; j < 2; j++) {
             const deckCard = document.createElement('div');
-            deckCard.classList.add('deck__card', positionDeckCard[i]);
+            deckCard.classList.add('deck__card', positionDeckCard[j]);
             deck.appendChild(deckCard);
-            deckCards.push(deckCard);
+            const { x, y } = targetPositions[i]; 
+            const deckRect = deckCard.getBoundingClientRect();
+            const dx = x - deckRect.left;
+            const dy = y - deckRect.top;
+
+            setTimeout(() => {
+                deckCard.style.transition = 'transform 0.6s ease-out';
+                deckCard.style.transform = `translate(${dx}px, ${dy}px)`;
+            }, 200 * (i * 2 + j)); 
         }
     }
-    return new Promise((resolve) => {
-        deckCards.forEach(( card, index) => {
-            setTimeout(() => {
-
-                if(index === 0 && deck.length - 1) {
-                    resolve(); 
-                }
-            }, index * 800);
-        });
-    });
 }
 
 export function randomCard(count){

@@ -45,7 +45,6 @@ async function startGame() {
         }
     }
     await distributionOfCards(texasHoldemState.countPlayers);
-
     
     const playersCards = getCardPlayer(texasHoldemState.countPlayers);
     const tableCards = randomCard(5);

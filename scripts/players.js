@@ -127,6 +127,8 @@ export function createPlayer(playerName, index) {
     allPlayers.forEach((player, index) => positionPlayer(player, index, allPlayers.length));
 };
 
+
+
 function positionPlayer(player, index, total) {
     resetStyles(player)
 
@@ -154,6 +156,7 @@ function positionPlayer(player, index, total) {
             player.classList.add('player__side-right');
         }        
     }
+    
 }
 btnAddPlayer.addEventListener('click', () => {
     if(playerState.countPlayer < playerState.maxPlayer){
