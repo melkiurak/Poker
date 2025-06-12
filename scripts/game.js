@@ -1,4 +1,4 @@
-import { distributionOfCards, getCardPlayer, randomCard, renderCards } from "./cards.js";
+import { distributionOfCards, getCardPlayer, randomCard,  } from "./cards.js";
 import { createPlayer } from "./players.js";
 
 const cardContainer = document.querySelector('.table__area-cards');
@@ -48,18 +48,6 @@ async function startGame() {
     const playersCards = getCardPlayer(texasHoldemState.countPlayers);
     const tableCards = randomCard(5);
     await distributionOfCards(texasHoldemState.countPlayers, playersCards, tableCards);
-
-    console.log('Table cards:',tableCards );
-    console.log('Players:', playersCards);
-    const playersContainer = document.querySelectorAll('.player');
-
-    playersContainer.forEach((playerContainer, index) => {
-        const playerCardContainer = playerContainer.querySelector('.player__cards');
-        const isMainPlayer = index === 0; 
-        renderCards(playersCards[index], playerCardContainer, isMainPlayer)
-    })
-
-    renderCards(tableCards, cardContainer);
 
 }
 
