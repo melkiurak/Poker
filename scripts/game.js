@@ -55,7 +55,8 @@ async function startGame() {
 
     playersContainer.forEach((playerContainer, index) => {
         const playerCardContainer = playerContainer.querySelector('.player__cards');
-        renderCards(playersCards[index], playerCardContainer)
+        const isMainPlayer = index === 0; 
+        renderCards(playersCards[index], playerCardContainer, isMainPlayer)
     })
 
     renderCards(tableCards, cardContainer);

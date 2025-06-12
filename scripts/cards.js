@@ -1,14 +1,23 @@
 import { cardToString, colorSuit } from "./main.js";
+const deck = document.getElementById('deck');
 
-const suits = ['Diamonds', 'Clubs', 'Spades', 'Hearts'];
-const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
-const cards = [];
-
-for(const suit of suits){
-    for(const value of values){
-        cards.push({suit, value})
+export function deckCards() {
+    const suits = ['Diamonds', 'Clubs', 'Spades', 'Hearts'];
+    const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
+    const cards = [];
+    for (const suit of suits) {
+        for (const value of values) {
+            const cardElement = document.createElement('div');
+            cardElement.classList.add('card', 'deck__card');
+            cards.push({ suit, value, element: cardElement }); 
+            deck.appendChild(cardElement); 
+        };
     };
-};
+    cards[18].element.classList.add('deck__card-middle');
+    cards[cards.length - 1].element.classList.add('deck__card-bottom');
+    return cards;
+}
+deckCards();
 export function distributionOfCards(player) {
     const players = document.querySelectorAll('.player');
     const tableCards = document.querySelector('.table__area-cards').getBoundingClientRect();
@@ -37,7 +46,6 @@ export function distributionOfCards(player) {
     
 }
 function animateCard(position, i, j){
-    const deck = document.getElementById('deck');
     const positionDeckCard = ['deck__card-top', 'deck__card-middle', 'deck__card-bottom'];
     const deckCard = document.createElement('div');
     deckCard.classList.add('deck__card', ...positionDeckCard);
@@ -73,17 +81,23 @@ export function getCardPlayer(players) {
     console.log(playersCards);
     return playersCards;
 }
-export function renderCards(cardsArray, container) {
+export function renderCards(cardsArray, container, isMainPlayer) {
     container.innerHTML = ''
     cardsArray.forEach(card => {
         const cardElement = document.createElement('div');
+        cardElement.classList.add('card');
         const suitImg = document.createElement('img');
         const cardValue = document.createElement('h2');
-
-        suitImg.src = cardToString(card);
-        cardElement.classList.add('card');
-        cardValue.textContent = card.value;
-        cardValue.style.color = colorSuit[card.suit];
+        if(isMainPlayer){
+            suitImg.src = cardToString(card);
+            cardValue.textContent = card.value;
+            cardValue.style.color = colorSuit[card.suit];
+        } else{
+            cardElement.style.backgroundImage = 'url("/asset/card/10081449.jpg")';
+            cardElement.style.backgroundSize = 'cover';
+            cardElement.style.backgroundPosition = 'center';
+            cardElement.style.backgroundRepeat = 'no-repeat';
+        }
 
         cardElement.appendChild(suitImg);
         cardElement.appendChild(cardValue);
