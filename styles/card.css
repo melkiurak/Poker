@@ -43,8 +43,6 @@
   top: 50%;
   transition: transform 0.6s ease-out;
 }
-.deck__card-top {
-}
 .deck__card-middle {
   top: 2px;
   left: 2px;

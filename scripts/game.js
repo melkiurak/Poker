@@ -44,10 +44,10 @@ async function startGame() {
             createPlayer(null, i);
         }
     }
-    await distributionOfCards(texasHoldemState.countPlayers);
     
     const playersCards = getCardPlayer(texasHoldemState.countPlayers);
     const tableCards = randomCard(5);
+    await distributionOfCards(texasHoldemState.countPlayers, playersCards, tableCards);
 
     console.log('Table cards:',tableCards );
     console.log('Players:', playersCards);

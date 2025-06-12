@@ -1,5 +1,7 @@
+import { texasHoldemState } from "./game.js";
 import { cardToString, colorSuit } from "./main.js";
 const deck = document.getElementById('deck');
+const table0Cards = document.querySelector('.table__area-cards').getBoundingClientRect();
 
 export function deckCards() {
     const suits = ['Diamonds', 'Clubs', 'Spades', 'Hearts'];
@@ -17,53 +19,7 @@ export function deckCards() {
     cards[cards.length - 1].element.classList.add('deck__card-bottom');
     return cards;
 }
-deckCards();
-export function distributionOfCards(player) {
-    const players = document.querySelectorAll('.player');
-    const tableCards = document.querySelector('.table__area-cards').getBoundingClientRect();
-    console.log(tableCards.left, tableCards.top);
-
-    const targetPositions  = Array.from(players).map((player) => {
-        const rect = player.getBoundingClientRect();
-        return {x: rect.left, y: rect.top}
-    });
-    
-    console.log(targetPositions)
-    
-    for (let i = 0; i < player; i++) {
-        for (let j = 0; j < 2; j++) {
-            animateCard( targetPositions[i],i, j);
-        }
-    };
-    let tablePosition = [] ;
-    for(let i = 0; i < 5; i++){
-        tablePosition.push({
-            x: tableCards.left + (i * 100),
-            y: tableCards.top,
-        });
-        animateCard(tablePosition[i], i, 0)
-    }
-    
-}
-function animateCard(position, i, j){
-    const positionDeckCard = ['deck__card-top', 'deck__card-middle', 'deck__card-bottom'];
-    const deckCard = document.createElement('div');
-    deckCard.classList.add('deck__card', ...positionDeckCard);
-    deck.appendChild(deckCard);
-
-    const deckRect = deckCard.getBoundingClientRect();
-
-    const {x, y} = position;
-    const dx = x - deckRect.left;
-    const dy = y - deckRect.top;
-    setTimeout(() => {
-        deckCard.style.transform = `translate(${dx}px, ${dy}px)`;
-        setTimeout(() => {
-            deck.remove()
-        }, 2500)
-    }, 200 * (i * 2 + j));
-}
-
+const cards = deckCards();
 export function randomCard(count){
     let cardsPlayer = [];
     for(let i = 0; i < count; i++){
@@ -72,15 +28,49 @@ export function randomCard(count){
         cards.splice(randomIndex, 1);
     }
     return cardsPlayer;
-}
+};
 export function getCardPlayer(players) {
     const playersCards = [];
     for(let i = 0; i < players; i++){
         playersCards.push(randomCard(2));
     }
-    console.log(playersCards);
     return playersCards;
+};
+
+export function distributionOfCards(player, playersCards, tableCards) {
+    const players = document.querySelectorAll('.player');
+    let tablePosition = [];
+    
+    const targetPositions  = Array.from(players).map((player) => {
+        const rect = player.getBoundingClientRect();
+        return {x: rect.left, y: rect.top}
+    });
+    
+    
+    for (let i = 0; i < player; i++) {
+        for (let j = 0; j < 2; j++) {
+            animateCard(playersCards[i][j].element,targetPositions[i],i, j);
+        };
+    };
+    for(let i = 0; i < 5; i++){
+        tablePosition.push({
+            x: table0Cards.left + (i * 100),
+            y: table0Cards.top,
+        });
+        animateCard(tableCards[i].element, tablePosition[i], i,)
+    };
 }
+function animateCard(cardElement,position, i, j){
+    const deckRect = cardElement.getBoundingClientRect();
+
+    const {x, y} = position;
+    const dx = x - deckRect.left;
+    const dy = y - deckRect.top;
+    setTimeout(() => {
+        cardElement.style.transform = `translate(${dx}px, ${dy}px)`;
+    }, 500 * (i * 2 + j));
+}
+
 export function renderCards(cardsArray, container, isMainPlayer) {
     container.innerHTML = ''
     cardsArray.forEach(card => {
@@ -98,7 +88,6 @@ export function renderCards(cardsArray, container, isMainPlayer) {
             cardElement.style.backgroundPosition = 'center';
             cardElement.style.backgroundRepeat = 'no-repeat';
         }
-
         cardElement.appendChild(suitImg);
         cardElement.appendChild(cardValue);
         container.appendChild(cardElement);
