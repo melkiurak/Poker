@@ -1,7 +1,6 @@
 import { texasHoldemState } from "./game.js";
 import { cardToString, colorSuit } from "./main.js";
 const deck = document.getElementById('deck');
-const tableArea = document.querySelector('.table__area-cards').getBoundingClientRect();
 
 export function deckCards() {
     const suits = ['Diamonds', 'Clubs', 'Spades', 'Hearts'];
@@ -12,13 +11,13 @@ export function deckCards() {
             const cardElement = document.createElement('div');
             const suitImg = document.createElement('img');
             const cardValue = document.createElement('h2');
-
+            
             cardElement.classList.add('card', 'deck__card');
-
+            
             suitImg.src = cardToString({ suit, value }); 
             cardValue.textContent = value;              
             cardValue.style.color = colorSuit[suit];   
-
+            
             cardElement.appendChild(suitImg);
             cardElement.appendChild(cardValue);
             cards.push({ suit, value, element: cardElement }); 
@@ -50,7 +49,8 @@ export function getCardPlayer(players) {
 export function distributionOfCards(player, playersCards, tableCards) {
     const players = document.querySelectorAll('.player');
     const blokcCardPlayer = Array.from(players).map(player => player.querySelector('.player__cards'));
-    
+    const tableElement = document.querySelector('.table__area-cards')
+    const tableArea = tableElement.getBoundingClientRect()
     let tablePosition = [];
     
     const targetPositions  = blokcCardPlayer.map((playerCard) => {
@@ -69,7 +69,7 @@ export function distributionOfCards(player, playersCards, tableCards) {
             x: tableArea.left + (i * 100),
             y: tableArea.top,
         });
-        animateCard(tableCards[i].element, tablePosition[i], i, 0, deck)
+        animateCard(tableCards[i].element, tablePosition[i], i, 0, tableElement)
     };
 }
 function animateCard(cardElement, position, i, j, targetContainer){
@@ -78,12 +78,10 @@ function animateCard(cardElement, position, i, j, targetContainer){
     const dx = x - deckRect.left;
     const dy = y - deckRect.top;
 
-    cardElement.style.transition = 'transform 0.6s ease-out';
+    cardElement.style.transition = 'transform 0.6s ease-out'
     cardElement.style.transform = `translate(${dx}px, ${dy}px)`;
-
     setTimeout(() => {
-        cardElement.style.transition = 'none';
-        cardElement.style.transform = 'none';
+        cardElement.classList.add('animate__card');
         targetContainer.appendChild(cardElement);
-    }, 600);
+    }, 600 * (i * 2 + j));
 }
