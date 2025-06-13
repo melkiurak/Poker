@@ -77,11 +77,12 @@ function animateCard(cardElement, position, i, j, targetContainer){
     const {x, y} = position;
     const dx = x - deckRect.left;
     const dy = y - deckRect.top;
-
-    cardElement.style.transition = 'transform 0.6s ease-out'
-    cardElement.style.transform = `translate(${dx}px, ${dy}px)`;
     setTimeout(() => {
-        cardElement.classList.add('animate__card');
-        targetContainer.appendChild(cardElement);
+        cardElement.style.transition = 'transform 0.6s ease-out';
+        cardElement.style.transform = `translate(${dx}px, ${dy}px)`;
+        setTimeout(() => {
+            cardElement.classList.add('animate__card');
+            targetContainer.appendChild(cardElement);
+        }, 600);
     }, 600 * (i * 2 + j));
 }

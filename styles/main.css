@@ -220,4 +220,5 @@ h3 {
   position: relative !important;
   left: auto !important;
   top: auto !important;
+  border: none !important;
 }
