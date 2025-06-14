@@ -26,11 +26,11 @@ export function deckCards() {
             deck.appendChild(cardElement); 
         }
     };
-    cards[18].element.classList.add('deck__card-middle');
-    cards[cards.length - 1].element.classList.add('deck__card-bottom');
     return cards;
-}
+};
+
 const cards = deckCards();
+
 export function randomCard(count){
     let cardsPlayer = [];
     for(let i = 0; i < count; i++){
@@ -47,44 +47,57 @@ export function getCardPlayer(players) {
     }
     return playersCards;
 };
-
-export function distributionOfCards(player, playersCards, tableCards) {
+export async function distributionOfCards(playerCount) {
+    const playersCards = getCardPlayer(texasHoldemState.countPlayers);
+    const tableCards = randomCard(5);
+    
     const players = document.querySelectorAll('.player');
     const blokcCardPlayer = Array.from(players).map(player => player.querySelector('.player__cards'));
-    const tableElement = document.querySelector('.table__area-cards')
-    const tableArea = tableElement.getBoundingClientRect()
-    let tablePosition = [];
-    
+    const tableElement = document.querySelector('.table__area-cards');
+    const tableArea = tableElement.getBoundingClientRect();
+
+    await distributeToPlayers(playerCount, playersCards, blokcCardPlayer);    
+    await distributeToTable(tableCards, tableElement, tableArea);
+};
+async function distributeToPlayers(playerCount, playersCards, blokcCardPlayer) {
     const targetPositions  = blokcCardPlayer.map((playerCard) => {
         const rect = playerCard.getBoundingClientRect();
         return {x: rect.left, y: rect.top}
     });
-    
-    
-    for (let i = 0; i < player; i++) {
+    for (let i = 0; i < playerCount; i++) {
         for (let j = 0; j < 2; j++) {
-            animateCard(playersCards[i][j].element,targetPositions[i],i, j, blokcCardPlayer[i]);
+            await animateCard(playersCards[i][j].element, targetPositions[i],i, j, blokcCardPlayer[i]);
         };
     };
+    
+};
+async function distributeToTable(tableCards, tableElement, tableArea,) {
+    let tablePosition = [];
     for(let i = 0; i < 5; i++){
         tablePosition.push({
             x: tableArea.left + (i * 100),
             y: tableArea.top,
         });
-        animateCard(tableCards[i].element, tablePosition[i], i, 0, tableElement)
+       await animateCard(tableCards[i].element, tablePosition[i], i, 0, tableElement)
     };
-}
-function animateCard(cardElement, position, i, j, targetContainer){
+    
+};
+function animateCard(cardElement, position, i, j, targetContainer) {
+  return new Promise(resolve => {
     const deckRect = cardElement.getBoundingClientRect();
-    const {x, y} = position;
+    const { x, y } = position;
     const dx = x - deckRect.left;
     const dy = y - deckRect.top;
+
     setTimeout(() => {
-        cardElement.style.transition = 'transform 0.6s ease-out';
-        cardElement.style.transform = `translate(${dx}px, ${dy}px)`;
-        setTimeout(() => {
-            cardElement.classList.add('animate__card');
-            targetContainer.appendChild(cardElement);
-        }, 600);
-    }, 600 * (i * 2 + j));
-}
+      cardElement.style.transition = 'transform 0.6s ease-out';
+      cardElement.style.transform = `translate(${dx}px, ${dy}px)`;
+
+      setTimeout(() => {
+        cardElement.classList.add('animate__card');
+        targetContainer.appendChild(cardElement);
+        resolve(); 
+      }, 400);
+    }, 200 * (i * 2 + j));
+  });
+};

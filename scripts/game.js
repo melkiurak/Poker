@@ -37,20 +37,17 @@ function optionsTexasHoldem() {
 }
 async function startGame() {
     game.style.display = 'none';
+
     for(let i = 0; i < texasHoldemState.countPlayers; i++){
-        if(i===0){
+        if(i === 0){
             createPlayer(texasHoldemState.namePlayer, i)
         } else {
             createPlayer(null, i);
         }
     }
     
-    const playersCards = getCardPlayer(texasHoldemState.countPlayers);
-    const tableCards = randomCard(5);
-    await distributionOfCards(texasHoldemState.countPlayers, playersCards, tableCards);
-
-}
-
+    await distributionOfCards(texasHoldemState.countPlayers,);
+};
 function verificationInput(e) {
     e.preventDefault();
 
@@ -82,10 +79,10 @@ function verificationInput(e) {
     texasHoldemState.namePlayer = name;
     texasHoldemState.countPlayers = players;
     startGame();
-}
+};
 
 texasHoldemBtn.addEventListener('click', () => {
     console.log('Я стандартный покер ');
     gameChoice.style.display = 'none';
     optionsTexasHoldem();
-})
+});

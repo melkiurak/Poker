@@ -158,6 +158,7 @@ function positionPlayer(player, index, total) {
     }
     
 }
+/*
 btnAddPlayer.addEventListener('click', () => {
     if(playerState.countPlayer < playerState.maxPlayer){
         createPlayer();
@@ -167,4 +168,4 @@ btnAddPlayer.addEventListener('click', () => {
         btnAddPlayer.disabled  =  true;
         btnAddPlayer.style.display = 'none'
     }
-})
+})*/
