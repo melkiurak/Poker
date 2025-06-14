@@ -2,8 +2,6 @@ import { texasHoldemState } from "./game.js";
 import { cardToString, colorSuit } from "./main.js";
 const deck = document.getElementById('deck');
 
-
-
 export function deckCards() {
     const suits = ['Diamonds', 'Clubs', 'Spades', 'Hearts'];
     const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
@@ -50,7 +48,7 @@ export function getCardPlayer(players) {
 export async function distributionOfCards(playerCount) {
     const playersCards = getCardPlayer(texasHoldemState.countPlayers);
     const tableCards = randomCard(5);
-    
+
     const players = document.querySelectorAll('.player');
     const blokcCardPlayer = Array.from(players).map(player => player.querySelector('.player__cards'));
     const tableElement = document.querySelector('.table__area-cards');

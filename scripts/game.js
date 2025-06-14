@@ -1,4 +1,4 @@
-import { distributionOfCards, getCardPlayer, randomCard,  } from "./cards.js";
+import { distributionOfCards,  } from "./cards.js";
 import { createPlayer } from "./players.js";
 
 const cardContainer = document.querySelector('.table__area-cards');
@@ -46,7 +46,7 @@ async function startGame() {
         }
     }
     
-    await distributionOfCards(texasHoldemState.countPlayers,);
+    await distributionOfCards(texasHoldemState.countPlayers);
 };
 function verificationInput(e) {
     e.preventDefault();
