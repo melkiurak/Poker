@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="./styles/card.css">
     <link rel="stylesheet" href="./styles/game.css">
     <link rel="stylesheet" href="./styles/player.css">
+    <link rel="stylesheet" href="./styles/actionBar.css">
     <title>Document</title>
 </head>
 <body>
-   <div class="game" id="game">
+   <!--<div class="game" id="game">
         <div class="game__container" id="gameContainer">
             <h2 id="titleGame">Welcome to Our Poker Games</h2>
             <div class="game__choice" id="gameChoice">
@@ -20,7 +21,7 @@
                 </button>
             </div>
         </div>
-    </div>
+    </div>-->
     <div class="container">
         <div class="table">
             <div class="table__border"></div>
@@ -32,7 +33,29 @@
             <div class="deck" id="deck">
         </div>
         <!--<button id="addPlayer">Add player</button>-->
-    </div>
+        </div>
+        <div class="action__bar">
+            <div class="action__bar-rate">
+                <div class="action-bar__bet-sizing">
+                    <div class="bet-sizing__presets"> 
+                        <button>min</button>
+                        <button>3/4</button>
+                        <button>pot</button>
+                        <button>max</button>
+                    </div>
+                    <div class="bet-sizing__slider">
+                        <input type="range" name="" id="">
+                    </div>
+                </div>
+                <button>100</button>
+            </div>
+            <div class="action__bar-controls">
+                <button class="action__bar-controls-fold">FOLD</button>
+                <button class="action__bar-controls-check">CHECK</button>
+                <button class="action__bar-controls-call">CALL</button>
+                <button class="action__bar-controls-bet">BET</button>
+            </div>
+        </div>
     </div>
 </body>
     <script type="module" src="/scripts/game.js"></script>

@@ -95,7 +95,7 @@ function animateCard(cardElement, position, i, j, targetContainer) {
         cardElement.classList.add('animate__card');
         targetContainer.appendChild(cardElement);
         resolve(); 
-      }, 400);
-    }, 200 * (i * 2 + j));
+      }, 200);
+    }, 10 * (i * 2 + j));
   });
 };

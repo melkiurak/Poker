@@ -1,0 +1,87 @@
+.action__bar {
+  position: absolute;
+  bottom: 10rem;
+  right: 0;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+.action__bar-rate {
+  display: flex;
+}
+.action-bar__bet-sizing {
+  max-width: 228px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.bet-sizing__presets {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  button {
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #727f87;
+    background-color: rgba(64, 82, 94, 0.24);
+    border-radius: 24px;
+    padding: 4px 12px;
+  }
+}
+.bet-sizing__slider {
+  input {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #40525e;
+    border-radius: 3px;
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    background: #40525e;
+    height: 0.5rem;
+    border-radius: 24px;
+  }
+  input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #d6e9fd;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -3px;
+  }
+
+  input[type="range"]::-moz-range-track {
+    background: #40525e;
+    height: 0.25rem;
+    border-radius: 24px;
+  }
+  width: 100%;
+}
+.action__bar-controls {
+  display: flex;
+  gap: 8px;
+  button {
+    font-family: "Dela Gothic One", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 24px 27px;
+    border-radius: 16px;
+  }
+}
+.action__bar-controls-fold {
+  background-color: #e97b88;
+  color: #040706;
+}
+.action__bar-controls-call,
+.action__bar-controls-check {
+  background-color: #40525e;
+  color: #98dee3;
+}
+.action__bar-controls-bet {
+  background-color: #98dee3;
+  color: #040706;
+}
