@@ -53,6 +53,7 @@ export async function distributionOfCards(playerCount) {
     const blokcCardPlayer = Array.from(players).map(player => player.querySelector('.player__cards'));
     const tableElement = document.querySelector('.table__area-cards');
     const tableArea = tableElement.getBoundingClientRect();
+    texasHoldemState.tableCards = tableCards;
 
     await distributeToPlayers(playerCount, playersCards, blokcCardPlayer);    
     await distributeToTable(tableCards, tableElement, tableArea);
@@ -79,9 +80,8 @@ async function distributeToTable(tableCards, tableElement, tableArea,) {
         });
        await animateCard(tableCards[i].element, tablePosition[i], i, 0, tableElement)
     };
-    
-    texasHoldemState.tableCards = tableCards;
 };
+
 function animateCard(cardElement, position, i, j, targetContainer) {
   return new Promise(resolve => {
     const deckRect = cardElement.getBoundingClientRect();
