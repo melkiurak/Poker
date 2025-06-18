@@ -27,6 +27,7 @@ export function deckCards() {
     return cards;
 };
 
+
 const cards = deckCards();
 
 export function randomCard(count){
