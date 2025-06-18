@@ -66,6 +66,7 @@ async function distributeToPlayers(playerCount, playersCards, blokcCardPlayer) {
         for (let j = 0; j < 2; j++) {
             await animateCard(playersCards[i][j].element, targetPositions[i],i, j, blokcCardPlayer[i]);
         };
+        texasHoldemState.players[i].cards = playersCards[i]
     };
     
 };
@@ -79,6 +80,7 @@ async function distributeToTable(tableCards, tableElement, tableArea,) {
        await animateCard(tableCards[i].element, tablePosition[i], i, 0, tableElement)
     };
     
+    texasHoldemState.tableCards = tableCards;
 };
 function animateCard(cardElement, position, i, j, targetContainer) {
   return new Promise(resolve => {

@@ -9,9 +9,12 @@ const titleGame = document.getElementById('titleGame');
 const game = document.getElementById('game');
 
 export const texasHoldemState = {
+    players: [],
+    startGame: false,
     namePlayer: '',
     countPlayers: 0,
     maxPlayer: 9,
+    tableCards: [],
 }
 
 
@@ -36,6 +39,7 @@ function optionsTexasHoldem() {
     document.getElementById('gameForm').addEventListener('submit', verificationInput);
 }
 async function startGame() {
+    texasHoldemState.startGame = true;
     game.style.display = 'none';
 
     for(let i = 0; i < texasHoldemState.countPlayers; i++){
@@ -47,6 +51,7 @@ async function startGame() {
     }
     
     await distributionOfCards(texasHoldemState.countPlayers);
+    console.log(texasHoldemState)
 };
 function verificationInput(e) {
     e.preventDefault();

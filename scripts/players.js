@@ -1,3 +1,5 @@
+import { texasHoldemState } from "./game.js";
+
 const playerWrapper = document.getElementById('player__wrapper');
 const btnAddPlayer = document.getElementById('addPlayer');
 const avatarList = [
@@ -74,10 +76,6 @@ const playerPositions = {
     }
 };
 
-const playerState = {
-    countPlayer: 0,
-    maxPlayer: 9,
-}
 
 function randomAvatar()  {
     const avatarIndex = Math.floor(Math.random() * avatarList.length)
@@ -123,6 +121,7 @@ export function createPlayer(playerName, index) {
         ${isMainPlayer ? `` : '<div class="player__line first__line"></div> <div class="player__line second__line"></div>'}
     `
     playerWrapper.appendChild(player);
+    texasHoldemState.players.push({id: index, name: name, cards: [], chips: bankroll, isFolded: false})
     const allPlayers = document.querySelectorAll('.player');
     allPlayers.forEach((player, index) => positionPlayer(player, index, allPlayers.length));
 };
