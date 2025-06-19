@@ -88,12 +88,12 @@ function randomName() {
 function resetStyles(element){
     element.removeAttribute('style');
 };
-export function createPlayer(playerName, index) {
+export function createPlayer(playerData, index,) {
     const avatar = randomAvatar();
     const player = document.createElement('div');
     const bankroll = 5000;
     const isMainPlayer = index === 0;
-    const name = isMainPlayer && playerName ? playerName : randomName();
+    const name = playerData.name || randomName();    
     player.classList.add('player', isMainPlayer ? 'player__main' : 'player__other');
     
     const playerInfoClass = isMainPlayer ? 'player__info-main' : 'player__info-other';
@@ -125,9 +125,6 @@ export function createPlayer(playerName, index) {
     const allPlayers = document.querySelectorAll('.player');
     allPlayers.forEach((player, index) => positionPlayer(player, index, allPlayers.length));
 };
-
-
-
 function positionPlayer(player, index, total) {
     resetStyles(player)
 

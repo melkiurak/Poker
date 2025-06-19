@@ -20,22 +20,17 @@ export const colorSuit = {
 }
 function localGame() {
     const tableElement = document.querySelector('.table__area-cards');
-    const playerWrapper = document.querySelector('.player__wrapper');
     const savedGame = localStorage.getItem('game');
     if (!savedGame) return;
     game.style.display = 'none';
 
 
     const gameParsed = JSON.parse(savedGame);
-    texasHoldemState.players = gameParsed.players.map((player) => {
-        return{ 
-            ...player,
-            cards: player.cards.map(card => ({
-                ...card, 
-                element: createCard(card.suit, card.value)
-            }))
-        }
+
+    gameParsed.players.forEach((player, index) => {
+        createPlayer(player, index);
     });
+
     texasHoldemState.tableCards = gameParsed.tableCards.map((card, index) => {
         const cardElement = createCard(card.suit, card.value);
         const tableArea = tableElement.getBoundingClientRect();
