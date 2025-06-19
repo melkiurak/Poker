@@ -1,4 +1,7 @@
-
+import { createCard } from "./cards.js";
+import { createPlayer } from "./players.js";
+import { texasHoldemState } from "./state.js";
+const game = document.getElementById('game');
 
 export function cardToString(card){
     const suitSymbols = {
@@ -15,3 +18,43 @@ export const colorSuit = {
     Spades: '#98DEE3',
     Hearts: '#E97B88',
 }
+function localGame() {
+    const tableElement = document.querySelector('.table__area-cards');
+    const playerWrapper = document.querySelector('.player__wrapper');
+    const savedGame = localStorage.getItem('game');
+    if (!savedGame) return;
+    game.style.display = 'none';
+
+
+    const gameParsed = JSON.parse(savedGame);
+    texasHoldemState.players = gameParsed.players.map((player) => {
+        return{ 
+            ...player,
+            cards: player.cards.map(card => ({
+                ...card, 
+                element: createCard(card.suit, card.value)
+            }))
+        }
+    });
+    texasHoldemState.tableCards = gameParsed.tableCards.map((card, index) => {
+        const cardElement = createCard(card.suit, card.value);
+        const tableArea = tableElement.getBoundingClientRect();
+
+        const x = tableArea.left + (index * 100); 
+        const y = tableArea.top; 
+        const deckRect = cardElement.getBoundingClientRect();
+        const dx = x - deckRect.left;
+        const dy = y - deckRect.top;
+
+        cardElement.style.transform = `translate(${dx}px, ${dy}px)`;
+        cardElement.classList.add('animate__card');
+
+        tableElement.appendChild(cardElement);
+        return {
+            ...card,
+            element: cardElement,
+        };
+    });
+
+}
+localGame()

@@ -1,3 +1,4 @@
+import { texasHoldemState } from "./state.js";
 import { distributionOfCards,  } from "./cards.js";
 import { createPlayer } from "./players.js";
 
@@ -8,14 +9,7 @@ const gameChoice = document.getElementById('gameChoice');
 const titleGame = document.getElementById('titleGame');
 const game = document.getElementById('game');
 
-export const texasHoldemState = {
-    players: [],
-    startGame: false,
-    namePlayer: '',
-    countPlayers: 0,
-    maxPlayer: 9,
-    tableCards: [],
-}
+
 
 function optionsTexasHoldem() {
     const options = document.createElement('div')

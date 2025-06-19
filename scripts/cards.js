@@ -1,33 +1,37 @@
-import { texasHoldemState } from "./game.js";
+import { texasHoldemState } from "./state.js";
 import { cardToString, colorSuit } from "./main.js";
-const deck = document.getElementById('deck');
 
 export function deckCards() {
     const suits = ['Diamonds', 'Clubs', 'Spades', 'Hearts'];
     const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
     const cards = [];
+    
     for (const suit of suits) {
         for (const value of values) {
-            const cardElement = document.createElement('div');
-            const suitImg = document.createElement('img');
-            const cardValue = document.createElement('h2');
-            
-            cardElement.classList.add('card', 'deck__card');
-            
-            suitImg.src = cardToString({ suit, value }); 
-            cardValue.textContent = value;              
-            cardValue.style.color = colorSuit[suit];   
-            
-            cardElement.appendChild(suitImg);
-            cardElement.appendChild(cardValue);
+            const cardElement = createCard(suit, value);
             cards.push({ suit, value, element: cardElement }); 
-            deck.appendChild(cardElement); 
         }
-    };
+    }
+    
     return cards;
-};
+}
+export function createCard(suit, value) {
+    const deck = document.getElementById('deck');
+    const cardElement = document.createElement('div');
+    const suitImg = document.createElement('img');
+    const cardValue = document.createElement('h2');
 
-
+    cardElement.classList.add('card', 'deck__card');
+    
+    suitImg.src = cardToString({ suit, value }); 
+    cardValue.textContent = value;              
+    cardValue.style.color = colorSuit[suit];   
+    
+    cardElement.appendChild(suitImg);
+    cardElement.appendChild(cardValue);
+    deck.appendChild(cardElement); 
+    return cardElement;
+}
 const cards = deckCards();
 
 export function randomCard(count){

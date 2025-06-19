@@ -1,4 +1,4 @@
-import { texasHoldemState } from "./game.js";
+import { texasHoldemState } from "./state.js";
 
 const playerWrapper = document.getElementById('player__wrapper');
 const btnAddPlayer = document.getElementById('addPlayer');
