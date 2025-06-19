@@ -1,4 +1,4 @@
-import { createCard } from "./cards.js";
+import { createCard, distributeToPlayers } from "./cards.js";
 import { createPlayer } from "./players.js";
 import { texasHoldemState } from "./state.js";
 const game = document.getElementById('game');
@@ -27,10 +27,11 @@ function localGame() {
 
     const gameParsed = JSON.parse(savedGame);
 
-    gameParsed.players.forEach((player, index) => {
+    gameParsed.players.forEach((player, index, card) => {
         createPlayer(player, index);
+        distributeToPlayers(player, index, card)
     });
-
+    
     texasHoldemState.tableCards = gameParsed.tableCards.map((card, index) => {
         const cardElement = createCard(card.suit, card.value);
         const tableArea = tableElement.getBoundingClientRect();

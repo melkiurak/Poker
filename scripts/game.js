@@ -8,7 +8,7 @@ const gameContainer = document.getElementById('gameContainer');
 const gameChoice = document.getElementById('gameChoice');
 const titleGame = document.getElementById('titleGame');
 const game = document.getElementById('game');
-
+const btnEndGame = document.getElementById('end__game');
 
 
 function optionsTexasHoldem() {
@@ -90,3 +90,13 @@ texasHoldemBtn.addEventListener('click', () => {
     gameChoice.style.display = 'none';
     optionsTexasHoldem();
 });
+btnEndGame.addEventListener('click', () => {
+    texasHoldemState.startGame = false;
+    texasHoldemState.players = [];
+    texasHoldemState.countPlayers = 0;
+    texasHoldemState.namePlayer = '';
+    texasHoldemState.tableCards = [];
+
+     game.style.display = 'block';
+    localStorage.removeItem('game');
+})

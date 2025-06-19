@@ -63,7 +63,7 @@ export async function distributionOfCards(playerCount) {
     await distributeToPlayers(playerCount, playersCards, blokcCardPlayer);    
     await distributeToTable(tableCards, tableElement, tableArea);
 };
-async function distributeToPlayers(playerCount, playersCards, blokcCardPlayer) {
+export async function distributeToPlayers(playerCount, playersCards, blokcCardPlayer) {
     const targetPositions  = blokcCardPlayer.map((playerCard) => {
         const rect = playerCard.getBoundingClientRect();
         return {x: rect.left, y: rect.top}
@@ -74,7 +74,6 @@ async function distributeToPlayers(playerCount, playersCards, blokcCardPlayer) {
         };
         texasHoldemState.players[i].cards = playersCards[i]
     };
-    
 };
 async function distributeToTable(tableCards, tableElement, tableArea,) {
     let tablePosition = [];
